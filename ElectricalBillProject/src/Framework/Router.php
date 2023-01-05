@@ -17,14 +17,15 @@ class Router
         */
 
         $pageController = $this->container->get('Vikto\ElectricalBillProject\Controllers\PageController');
+        $billController = $this->container->get('Vikto\ElectricalBillProject\Controllers\BillController');
 
         switch ($request) {
             case '':
             case '/':
                 $pageController->renderRegisterPage();
                 break;
-            case 'electricalBills/unpaidBills':
-                require __DIR__ . '/../../views/electricalBills/unpaidBills.php';
+            case '/electricalBills/unpaidBills':
+                $billController->getUnpaidBills();
                 break;
             default:
                 http_response_code(404);
