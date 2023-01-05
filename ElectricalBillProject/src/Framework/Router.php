@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Vikto\ElectricalBillProject\Framework;
 
 use Vikto\ElectricalBillProject\Container\DIContainer;
-use Vikto\ElectricalBillProject\Controller\PageController;
+use Vikto\ElectricalBillProject\Controllers\PageController;
 
 class Router
 {
@@ -16,7 +16,7 @@ class Router
         /* @var PageController $pageController
         */
 
-        $pageController = $this->container->get('Vikto\ElectricalBillProject\Controller\PageController');
+        $pageController = $this->container->get('Vikto\ElectricalBillProject\Controllers\PageController');
 
         switch ($request) {
             case '':

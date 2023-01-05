@@ -1,6 +1,6 @@
 <?php
 
-namespace Vikto\ElectricalBillProject\Controller;
+namespace Vikto\ElectricalBillProject\Controllers;
 
 class PageController
 {
