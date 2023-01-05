@@ -5,15 +5,16 @@ namespace Vikto\ElectricalBillProject\Repositories\Register;
 
 class DayBillRegister implements BillRegisterInterface
 {
-    private const JSON_FILE_PATH = __DIR__ . '/../../Files/bills.json';
+    private const JSON_FILE_PATH = __DIR__ . '/../../Files/bills/daytimeBills.json';
 
     public function addToJson(array $newBill): void
     {
         $billsArray = $this->decodeJson();
 
-        $updatedBillsArray = array_push($billsArray, $newBill);
+        $newBill['isPaid'] = false;
+        $billsArray[] = $newBill;
 
-        file_put_contents(self::JSON_FILE_PATH, json_encode($updatedBillsArray));
+        file_put_contents(self::JSON_FILE_PATH, json_encode($billsArray));
     }
 
     public function decodeJson(): array
