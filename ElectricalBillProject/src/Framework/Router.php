@@ -3,21 +3,32 @@ declare(strict_types=1);
 
 namespace Vikto\ElectricalBillProject\Framework;
 
+use Vikto\ElectricalBillProject\Container\DIContainer;
+use Vikto\ElectricalBillProject\Controller\PageController;
+
 class Router
 {
+    public function __construct(private readonly DIContainer $container)
+    {}
+
     public function process(string $request)
     {
+        /* @var PageController $pageController
+        */
+
+        $pageController = $this->container->get('Vikto\ElectricalBillProject\Controller\PageController');
+
         switch ($request) {
             case '':
             case '/':
-                require __DIR__ . '/../../views/index.php';
+                $pageController->renderRegisterPage();
                 break;
             case 'electricalBills/unpaidBills':
                 require __DIR__ . '/../../views/electricalBills/unpaidBills.php';
                 break;
             default:
                 http_response_code(404);
-                require __DIR__ . '/../../views/error/error.php';
+                $pageController->renderNotFoundPage();
         }
     }
 }
