@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /PHP_practise_test/ElectricalBillProject/
+RewriteRule ^index\.php＄ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /PHP_practise_test/ElectricalBillProject/index.php [L]
