@@ -3,7 +3,6 @@
 namespace Vikto\ElectricalBillProject\Controllers;
 
 use Vikto\ElectricalBillProject\Container\DIContainer;
-use DateTime;
 
 class BillController
 {
@@ -15,9 +14,10 @@ class BillController
         $billRepository = $this->container->get('Vikto\ElectricalBillProject\Repositories\BillRepository');
         $newBill = $this->getPost();
         $currentMonth = date('n');
-        $newBillMonth = $this->getMonthOfNewBill();
 
         if (!empty($newBill)) {
+            $newBillMonth = $this->getMonthOfNewBill();
+
             switch (true) {
                 case $newBillMonth < $currentMonth:
                     throw new \Exception('You are late to pay this bill by n days');
@@ -29,7 +29,6 @@ class BillController
             }
         }
 
-        // gauti bill object
         $daytimeUnpaidBills = $billRepository->getDaytimeUnpaidBills();
         $nighttimeUnpaidBills = $billRepository->getNighttimeUnpaidBills();
 
@@ -39,9 +38,10 @@ class BillController
     private function getPost(): array
     {
 
-        if(empty($_POST['usedKwh']) || empty($_POST['priceOfOneKwh']) || empty($_POST['month'])) {
-            throw new \Exception('Please fill in empty fields');
-        }
+        // Spaudzint 'GO TO PAYMENT' nuoroda meta error
+//        if(empty($_POST['usedKwh']) || empty($_POST['priceOfOneKwh']) || empty($_POST['month'])) {
+//            throw new \Exception('Please fill in empty fields');
+//        }
 
         return $_POST;
     }
