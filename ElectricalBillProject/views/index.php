@@ -1,5 +1,9 @@
 <?php
 declare(strict_types=1);
+
+if (!isset($errorMessage)) {
+    $errorMessage = '';
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +64,27 @@ declare(strict_types=1);
     #form {
         border: 5px double black;
         width: 40vw;
-        padding: 24px;
         text-align: center;
     }
 
     #payment {
         margin-bottom: 32px;
+        padding: 24px;
+    }
+
+    #form {
+        padding-bottom: 24px;
+    }
+
+    #form > h2 {
+        margin-top: 24px;
+    }
+
+    .error {
+        padding: 8px 0;
+        background-color: #c74747;
+        color: white;
+        font-size: 18px;
     }
 </style>
 <html>
@@ -75,8 +94,13 @@ declare(strict_types=1);
             <a href='electricalBills/unpaidBills'>GO TO PAYMENT</a>
         </div>
         <div id="form">
+            <?php
+            if (!empty($errorMessage)) {
+               echo "<p class='error'>$errorMessage</p>";
+            }
+            ?>
             <h2>ADD NEW BILL</h2>
-            <form method="post" action="electricalBills/unpaidBills">
+            <form method="post" action='electricalBills/unpaidBills'>
                 <label for="usedKwh">Used kWh total:</label> <br/>
                 <input type="number" name="usedKwh"> <br/>
                 <label for="priceOfOneKwh">Price of 1 kWh (&euro;):</label> <br/>
