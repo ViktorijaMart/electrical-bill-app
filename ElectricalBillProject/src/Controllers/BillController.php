@@ -38,6 +38,11 @@ class BillController
 
     private function getPost(): array
     {
+
+        if(empty($_POST['usedKwh']) || empty($_POST['priceOfOneKwh']) || empty($_POST['month'])) {
+            throw new \Exception('Please fill in empty fields');
+        }
+
         return $_POST;
     }
 

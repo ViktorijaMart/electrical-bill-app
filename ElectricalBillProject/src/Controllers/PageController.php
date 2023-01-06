@@ -14,7 +14,7 @@ class PageController
         $daytimeBillPayment = $this->container->get('Vikto\ElectricalBillProject\Repositories\Pay\DaytimeBillPayment');
         $nighttimeBillPayment = $this->container->get('Vikto\ElectricalBillProject\Repositories\Pay\NighttimeBillPayment');
 
-        if(isset($_POST)) {
+        if(!empty($_POST)) {
             $daytimeBillPayment->payBills();
             $nighttimeBillPayment->payBills();
         }
